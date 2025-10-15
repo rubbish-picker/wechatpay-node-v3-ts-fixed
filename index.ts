@@ -976,7 +976,10 @@ class Pay extends Base {
     const url = `https://api.mch.weixin.qq.com/v3/fund-app/mch-transfer/transfer-bills/out-bill-no/${params.out_bill_no}/cancel`;
     const authorization = this.buildAuthorization('POST', url, undefined);
 
-    const headers = this.getHeaders(authorization, { mchid: this.mchid });
+    const headers = this.getHeaders(authorization, {
+      mchid: this.mchid,
+      'Content-Type': 'application/json',
+    });
     return await this.httpService.post(url, undefined, headers);
   }
 
